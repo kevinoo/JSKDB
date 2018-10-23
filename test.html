@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>JSKDB Test :)</title>
+
+	<script type="text/javascript" src="JSKDB_v3.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			// localStorage.clear();
+
+			var MyDB = new JSKDB( JSKDB.prototype.Log.VERBOSE );
+
+			if( !MyDB.existsDatabase('TEST') ){
+				MyDB.createDatabase('TEST');
+			}
+
+			MyDB.use('TEST');
+
+			if( !MyDB.existsTable('users') ){
+				MyDB.createTable('users', ['cf','lastname','firstname'], 'cf' );
+			}
+
+			MyDB.insertData('users', {'cf': 'LLCASDF123VF', 'lastname': 'Test', 'firstname': 'Kevin' } );
+			MyDB.insertData('users', {'cf': 'dsfghjmnbvc', 'lastname': 'ry', 'firstname': 'dfg', 'fieldNO':'adfasdf' } );
+			MyDB.insertData('users', {'cf': 'LLCASDF1234VF', 'lastname': 'NOOO', 'firstname': 'NOOO' } );
+
+			console.dir( MyDB.select('users') );
+		})();
+	</script>
+
+</head>
+<body>
+
+Testa pure.... :)
+
+</body>
+</html>

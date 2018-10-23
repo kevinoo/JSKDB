@@ -1,0 +1,98 @@
+
+	2.1.1
+		* Fix delete function and select function (don't return a null value)
+
+	2.1.0
+		* structsExtraction, can extract a structure of table
+		* JSKDB.ui extend to all objects
+
+		/* ******************************
+		
+		CronoMeDB.structsExtraction({
+		    'tables': {
+		        'cronome_accounts': 'AccountStruct',
+		        'cronome_chronometers': {
+		            'name': 'ChronometerStruct',
+		            'defaults':{
+		                'times': '{}',
+		                'id_chronometer': '(function(){ return User.getHash(); })()',
+		                
+		            },
+		            'extras': {
+		                'nextPoint': 1,
+		                'saveTime': function(){
+		                    var t = Chronometer.getTime();
+		                    this.time[ t ] = this.points[ this.nextPoint ];
+		                    this.nextPoint++;
+		                }
+		            }
+		        },
+		    }
+		});
+		
+		******************************** */
+
+	2.0.4
+		* Modify the return value of ".select", now returns a map of element
+		* Fix view of Object in "JSKDB.UI" :)   
+		* Fix method updateData()
+
+	2.0.3
+		JSKDB
+			* Fix method deleteData()
+
+	2.0.2
+		JSKDB
+			* Added statistics in method ".ui"
+
+	2.0.1
+		JSKDB
+			* Added statistics in method ".ui"
+
+	2.0.0
+		JSKDB
+			* New method for print a table with data in databases: JSKDB.ui( selector )
+			* Resolved a little bug fix
+
+
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+	1.0.1
+	
+		KTABLE
+	
+			- You can not extend the fields in a table using the Insert method. The fields will be inserted columns in the table
+		
+			var T = new KTable( 'person', ['id','firstname'] );
+			T.insertData( {id:1,firstname:'Kevin'} );	//	ok
+			T.insertData( {id:2,lastname:'Lucich'} );	//	Field "lastname" don't insert
+			T.updateData( {id:2,lastname:'Lucich'} );	//	Field "lastname" don't update
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	1.0.0
+		KTABLE( table_name, column, key, debug )
+		
+			- insertData( datas )
+			- updateData( datas )
+			- deleteData( datas )
+			- truncate()
+			- select( keys )
+			- selectFirst()
+			- getStat()
+		
+		JSKDB
+			- createDatabase( db_name, version )
+			- use( db_name )
+			- insertData( table_name, datas )
+			- updateData( table_name, datas )
+			- deleteData( table_name, datas )
+			- importData( table_name, datas )
+			- select( table_name, keys )
+			- selectFirst( table_name )
+			- exportDB()
+			- exportDB()
+			- clear()	//	= truncate
